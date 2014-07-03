@@ -1,4 +1,16 @@
-backend
+EasyBackend- An open source backend replacement for parse.com
 =======
 
-backend
+###Current Status
+=========
+Under development
+
+
+###Completed Features
+=====
+
+
+###Pending Features
+=====
+
+
