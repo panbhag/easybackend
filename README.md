@@ -1,4 +1,4 @@
-EasyBackend- An open source backend replacement for parse.com
+##EasyBackend- An open source backend replacement for parse.com
 =======
 
 ###Current Status
