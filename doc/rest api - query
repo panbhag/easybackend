@@ -1,0 +1,70 @@
+
+
+GET https://api.parse.com/1/classes/GameScore
+
+response {
+  "results": [
+    {
+      "createdAt": "2011-08-19T02:24:17.787Z",
+      "objectId": "A22v5zRAgd",
+      "score": 80075
+    },
+    {..
+    }
+  ]
+}
+
+
+where
+	 The value of the where parameter should be encoded JSON. Thus, if you look at the actual URL requested, it would be JSON-encoded, then URL-encoded
+
+
+exact matching
+where={"playerName":"Sean Plott","cheatMode":false}	 
+selectors
+where={"score":{"$gte":1000,"$lte":3000}}
+where={"score":{"$in":[1,3,5,7,9]}}
+where={"playerName":{"$nin":["Jonathan Walsh","Dario Wunsch","Shawn Simon"]}}
+where={"score":{"$exists":true}}
+where={"score":{"$exists":false}}
+
+
+on array values
+where={"arrayKey":2} //array should contain 2
+where={"arrayKey":{"$all":[2,3,4]}} //array should contain all of these
+
+
+Compound Queries
+where={"$or":[{"wins":{"$gt":150}},{"wins":{"$lt":5}}]}
+
+
+
+
+relational query
+	later
+subquery
+where={"hometown":{"$select":{"query":{"className":"Team","where":{"winPct":{"$gt":0.5}}},"key":"city"}}}
+
+
+order
+order=score
+order=-score
+order=score,-name
+
+limit 
+limit=200
+skip=400
+
+selecting only few fields
+keys=score,playerName
+
+
+count
+count=1
+{
+  "results": [
+ 
+  ],
+  "count": 1337
+}
+

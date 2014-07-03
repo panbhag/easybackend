@@ -1,0 +1,2 @@
+object creation
+$.ajax({url:'/1/classes/Events' , type:'POST', data:{a:1,b:2,c:3},success:function(data){console.log(data)} });

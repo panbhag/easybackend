@@ -1,0 +1,97 @@
+
+problem
+    callback problem?
+
+email validation
+
+
+GeoPoints
+  store type
+    http://blog.mongodb.org/post/50984169045/new-geo-features-in-mongodb-2-4
+
+  nearSpehere
+    http://docs.mongodb.org/manual/reference/operator/query/nearSphere/#op._S_nearSphere
+    
+  within box
+
+
+password reset
+
+validate session token
+
+create user from facebook
+
+
+
+
+data types
+
+
+Relations CRUD
+
+error codes
+
+checking field names are valid
+
+Batch operations
+
+update
+     counter
+     delete field
+obj delete:
+   response?
+   if object not found, handle error
+
+clound code callbacks(before after , save create delete etc)
+
+ROLES
+
+FILES
+
+Analytics
+
+Push
+
+Installations
+
+max limit : 1000
+
+
+
+--------------------------------	
+object creation:done
+object fetching:done
+obj update : done
+obj delete: done
+query
+selector query
+select
+order
+limit
+skip
+default limit = 100;
+$inQuery
+$notInQuery
+$relatedTo
+OR operator
+count
+Users
+  post
+  update
+  delete
+  query
+query
+    response object format: exclude :_id, add objectId
+Cloud Functions
+
+
+
+Relational queries
+
+object child fetching: include
+    single
+    multiple
+    multilevel
+
+
+http://www.developereconomics.com/parse-leads-with-28-but-competition-for-second-spot-is-heating-up-as-baas-rises-in-popularity/

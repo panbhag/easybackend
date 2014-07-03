@@ -1,0 +1,163 @@
+// Draw routes.  Locomotive's router provides expressive syntax for drawing
+// routes, including support for resourceful routes, namespaces, and nesting.
+// MVC routes can be mapped mapped to controllers using convenient
+// `controller#action` shorthand.  Standard middleware in the form of
+// `function(req, res, next)` is also fully supported.  Consult the Locomotive
+// Guide on [routing](http://locomotivejs.org/guide/routing.html) for additional
+// information.
+var passport = require('passport');
+
+
+module.exports = function routes() {
+  
+  this.match("/:apiVersion/classes/:className", "parseObjects#create",{via:"post"}); //create object
+  this.match("/:apiVersion/classes/:className/:objectId","parseObjects#show",{via:"get"});  //get object
+
+
+
+  this.resources('posts');
+
+  this.match("/events/users", "attendees#userList",{via:"get"})
+  this.match("/groups/users", "members#userList",{via:"get"})
+
+
+
+    this.match('/search','search#index',{via:'get'});
+  this.match('/search/users','search#users',{via:'get'});
+  this.match('/home','account#home',{via:'get'});
+  this.match('/','account#home',{via:'get'});
+  this.match('/friendlist','messages#friends', {via:'get'});
+
+  //twitter login
+  this.match('/login','account#loginForm',{via:'get'});
+
+  this.match('/auth/twitter',passport.authenticate('twitter'));
+
+  this.match('/auth/twitter/callback',passport.authenticate('twitter', {successRedirect:"/", failureRedirect: '/' }),{via:'get'})
+  // this.match('/auth/twitter/callback', 
+    // passport.authenticate('twitter', {successRedirect:"/home",failureRedirect: '/login' }), 
+    // function(req, res) {
+        // if (req.session.newtwitteruser){
+        // res.redirect('/addemail');}
+        // else {res.redirect('/');}
+    // });
+
+  //login using facebook
+
+  this.match('LoginUsingFacebook/Login',passport.authenticate('facebook-app1',{ scope:['email','publish_actions'] }));
+  this.match('/auth/facebook/callback',passport.authenticate('facebook-app1',{successRedirect:"/home", failureRedirect: '/login' }))
+//connect or sync with facebook
+  this.match('connect/facebook',passport.authenticate('facebook-app2',{ scope:['email','publish_actions']}));
+  this.match('/connect/facebook/callback',passport.authenticate('facebook-app2',{successRedirect:"/home", failureRedirect: '/login' }))
+
+
+//thirdparty url
+this.match("/osn/fbpost","osn#fbpost");
+this.match("/osn/twittpost","osn#twittpost");
+//
+  //local authentication
+  this.match('login', 'account#login', { via: 'post' });
+  this.match('logout', 'account#logout');
+
+  //signup
+  this.match("/signup","account#new");
+  this.match("/signup","account#create",{via:'post'});
+  this.match("/account/email_exists","account#email_exists");
+
+
+  //profile
+  this.match("/profile/:id","profile#show");
+  this.match('/users/:id',"profile#show");
+  this.match("/profile/:id","profile#update",{via:'put'});
+  this.match("/profile/updateImage","profile#updateImage",{via:"post"});
+
+//data migration
+// this.match("/datamigration/users","data_migration#users",{via:"post"});
+// this.match("/datamigration/connection","data_migration#connections",{via:"post"});
+// this.match("/datamigration/posts","data_migration#posts",{via:"post"});
+// this.match("/datamigration/useralbums","data_migration#useralbums",{via:"post"});
+// this.match("/datamigration/groups","data_migration#groups",{via:"post"});
+// this.match("/datamigration/groupPosts","data_migration#groupPosts",{via:"post"});
+// this.match("/datamigration/events","data_migration#events",{via:"post"});
+// this.match("/datamigration/messages","data_migration#messages",{via:"post"});
+// this.match("/datamigration/activateUsers","data_migration#activateUsers");
+// this.match("/datamigration/updateCounts","data_migration#updateCounts");
+
+
+//end of data migration url  
+
+//data populate start
+// this.match("/datapopulate/updateEvent","data_populate#updateEvent");
+// this.match("/datapopulate/updateUser","data_populate#updateUser");
+// this.match("/datapopulate/updateGroup","data_populate#updateGroup");
+// this.match("/datapopulate/hashPassword","data_populate#hashPassword");
+//data populate end
+
+ this.match("/groups", "groups#create",{via:'post'});
+  
+  this.match("/group/:group_id/stories","stream#groupIndex");
+  this.match("/stories/createGroupPost","stories#createGroupPost",{via:"post"});
+  
+  //events
+  this.match("/me/events","events#myList",{via:"get"});
+  //this.match("/events/:id","events#eventDetails", {via:"get"});
+  //this.match("/events/:id/attendees","events#attendees", {via:"post"})
+  //this.match("/events/:id/attendees","events#listAttendees",{via:"get"})
+  this.match("/users/:userId/events", "events#myList", {via:"get"});
+  this.resources('stories',function(){
+      this.resources('comments',function(){
+          this.resources('comment_likes');
+
+      });
+      this.resources('likes');
+  });
+  //this.resources("data_migration");
+  this.resources("albums");
+  this.match("/albums/:id/addPhotos","albums#addPhotos",{via:"post"});
+  
+	this.match("/followers/list","followers#list");
+   //this.match("/resize","photos#resize");
+
+  this.resources("stream");
+  this.resources("followings");
+  this.resources("followers");
+  this.resources("friends");
+  this.resources('current_user');
+  this.resources("photos");
+  this.resources("messages");
+  this.resources("osn");  
+
+	//notification	
+   this.resources("notifications");
+  this.resources("groups",function(){
+      this.resources('members');
+      this.resources('requests');
+  });
+  //this.resources("groupStream");
+  this.resources("groupprofile");
+  this.match("/groups/:id/updateImage","groups#updateImage",{via:"post"});
+
+
+
+    this.resources("members");
+  this.resources("events",function(){
+  	  this.resources("attendees");
+  });
+
+  this.resources("password");
+
+  this.match("/activate/:activationCode","account#activate");
+  this.match("/password_reset/:passwordResetCode","password#edit");
+  this.match("/password/update","password#update", {via:"post"});
+
+
+  this.match("/events/:id/updateImage","events#updateImage",{via:"post"});
+
+ 
+
+
+
+
+ 
+// this.root('pages#main');
+}

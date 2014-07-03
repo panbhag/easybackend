@@ -1,0 +1,61 @@
+var locomotive = require('locomotive');
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var objectSchema = new Schema({
+	createdAt:{type:Date, default:function(){ return new Date()}},
+	updatedAt:{type:Date, default:function(){ return new Date()}}
+
+},{ strict: false });
+
+var Controller = locomotive.Controller;
+
+
+var ParseObjectsController = new Controller();
+
+
+ParseObjectsController.show = function(){
+	
+    var self = this;
+    var className = self.param('className');
+    var ObjectModel = mongoose.model(className,objectSchema)
+
+    ObjectModel.findById(this.param('objectId'),function(err,o){
+	if(err){console.log(err);self.res.send(500,err)}
+	o = o.toJSON() ;
+	delete o._id;
+	delete o._v;
+        self.res.json(o);
+    });
+}
+
+
+ParseObjectsController.create = function(){
+    var self = this;
+    var className = self.param('className');
+    var objectParams = self.req.body;
+
+    var ObjectModel = mongoose.model(className,objectSchema)
+
+    var object = new ObjectModel();
+    object.set(objectParams) ;
+    object.set({'objectId':object._id});
+    
+    object.save(function(err,o){
+	console.log(o);
+	if(err){console.log(err);self.res.send(500,err)}
+        self.res.send({objectId:o._id, createdAt:o.createdAt});	
+    });
+}
+
+
+
+
+
+    /**console.log("************params****************")
+	console.log(self.param('className'))
+	console.log(self.req.body);
+    console.log("****************************")
+    **/
+module.exports = ParseObjectsController;
+
+
