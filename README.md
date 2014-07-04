@@ -2,12 +2,12 @@
 =======
 
 #####Current Status
-=========
+
 Under development
 
 
 #####Features
-=====
+
 
 Once in Bold are pending
 
