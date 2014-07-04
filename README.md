@@ -77,3 +77,19 @@ Once in Bold are pending
 * **Geo Points**
 
 
+####Gettign Started
+
+Pre-requisites  
+  Mongodb  
+  Node  
+ 
+
+
+Dowload / Clone the repository
+
+cd in the folder
+
+npm install
+
+lcm server
+
