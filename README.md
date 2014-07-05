@@ -127,7 +127,7 @@ At this point they donot exist. Not sure if the existing once offered by parse.c
 * You can build the Android and IOS and other clients.
 * If you understand licences and legal issues well, you can explain if the existing clients of Andoroid, ios etc can be reused.
 
-Please contact me on pankajbhageria at gmail dot com to reach me
+You can reach me at pankajbhageria at gmail dot com.
 
 
 
