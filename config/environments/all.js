@@ -75,7 +75,7 @@ module.exports = function() {
   this.use(express.methodOverride());
   this.use(express.session({ secret: 'sa sad',    store: mongooseSessionStore }));
   this.use(flash());
-  this.use(connectTimeout({ time: 6000000 }))
+  //this.use(connectTimeout({ time: 6000000 }))
 
   this.use (connectAsset({build: false,src:'public'})); 
 

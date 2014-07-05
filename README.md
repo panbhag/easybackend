@@ -79,17 +79,44 @@ Once in Bold are pending
 
 ####Gettign Started
 
-Pre-requisites  
-  Mongodb  
-  Node  
+Dependencies
+* MongoDB
+* Node
  
-
 
 Dowload / Clone the repository
 
 cd in the folder
 
-npm install
+`>npm install`
 
-lcm server
+configure the database name  
+Go to file config/initializers/02_mongoose.js 
+Edit this line
+
+```javascript
+var dbName = "backend"
+var dbServerURL = 'mongodb://localhost/'; 
+```
+Set the dbName and the dbServerURL(if mongodb is hosted on different server).  
+
+Start the server
+`> lcm server`
+
+In your web application include
+
+```html
+<script type="text/javascript" src="localhost:3000/parse-1.2.9"></script>
+<script type="text/javascript">
+  Parse.serverURL = 'http://localhost:3000' 
+</script>
+```
+The Parse.serverURL points to the URL on which easybackend server is running.
+
+
+#####Run Tests
+
+go to http://localhost:3000/tests/index.html
+
+
 

@@ -6,11 +6,37 @@ var should = chai.should();
 
 Parse.initialize("QO46STJFu2cVmzDetUY5ajQJUC9mTliYdrdorVGg", "A8qOc368LPaVJyNiJshACnfbnc90EnRVrdMt6h6q");
 
-/*
+//runs once before all tests
+before(function(done){
+  Parse.Cloud.run("initTest",{},function(){
+    console.log("initialized test data");
+    done();
+  })
+})
+
+//runs once after all tests
+after(function(done){
+  Parse.Cloud.run("clearTestData",{},function(){
+    console.log("cleared test data");
+    done();
+  })
+})
+
+
 describe("save method",function(){
      //pending things
      // negative assertions, create from assertion class
 
+    //clears data after save method testing 
+    after(function(done)
+    {
+
+      Parse.Cloud.run("clearGameScore",{},function(){
+         console.log("cleared GameScore");
+         done();
+      })
+
+    })
 
     it("should be able to save the object",function(done){
     
@@ -23,7 +49,6 @@ describe("save method",function(){
         gameScore.save(null, {
           success: function(response) {
 
-            console.log('aaaaaaaaaaa',response);
             response.should.have.property("id");
             response.should.have.property("createdAt");
             done();
@@ -45,6 +70,17 @@ describe("save method",function(){
 
 
 describe('retrive by id',function(){
+
+    //clears data after find by id testing
+    after(function(done)
+    {
+
+      Parse.Cloud.run("clearGameScore",{},function(){
+         console.log("cleared GameScore");
+         done();
+      })
+
+    })
 
     it("should be able to save the object with all the fields",function(done){
     
@@ -95,7 +131,20 @@ describe('retrive by id',function(){
 
 describe("update should update data",function(){
 
+   //clears data after update testing
+   after(function(done)
+    {
+
+      Parse.Cloud.run("clearGameScore",{},function(){
+         console.log("cleared GameScore");
+         done();
+      })
+
+  })
+
   it("should save all the updated data",function(done){
+
+
 
 
         var gameScore = new GameScore();
@@ -162,7 +211,7 @@ describe("update should update data",function(){
 
 })
 
-*/
+
 describe("find",function(){
 
   it("should find by single constrain",function(done){
@@ -177,6 +226,8 @@ describe("find",function(){
 
       });
   })
+
+  
   it("should find by multiple constrains",function(done){
 
     var query = new Parse.Query(Student);

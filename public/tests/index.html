@@ -11,9 +11,10 @@
 <script type="text/javascript" src="chai-things.js"></script>
 <script type="text/javascript" src="chai-fuzzy.js"></script>
 <script type="text/javascript" src="../q.js"></script>
-<script type="text/javascript" src="../my_parse-1.2.9.js"></script>
-
-
+<script type="text/javascript" src="../parse-1.2.9.js"></script>
+<script type="text/javascript">
+	Parse.serverURL = 'http://localhost:3000'
+</script>
 <script>mocha.setup('bdd')</script>
 <script type="text/javascript" src="tests.js"></script>
 

@@ -23,10 +23,13 @@ CloudFunctionsController.run = function(){
 	var functionName = self.param("functionName");
 
 	var functionParams = _.omit(self.param,"functionName");
+	CloudFunction[functionName](functionParams,function(result)
+	{
+		var response = {result: result}
+		self.res.json(response);		
+	}
+	)
 
-	var response = {result: CloudFunction[functionName](functionParams)}
-
-	self.res.json(response);
 }
 
 var CloudFunction = {}
@@ -36,7 +39,7 @@ CloudFunction.greet = function(callback)
 	callback("hello world")
 }
 
-CloudFunction.initTest = function(callback){
+CloudFunction.initTest = function(params,callback){
 
 
 	var Student = mongoose.model("Student",ObjectSchema);
@@ -84,6 +87,28 @@ CloudFunction.initTest = function(callback){
 	})
 
 }
+
+CloudFunction.clearTestData = function(params,callback)
+{
+	var Student = mongoose.model("Student",ObjectSchema);
+	var Teacher = mongoose.model("Teacher",ObjectSchema);
+
+	Student.find().remove(function(){
+		Teacher.find().remove(function(){
+			callback({message:"Data cleared"});
+		})
+	})
+}
+
+CloudFunction.clearGameScore = function(params,callback)
+{
+	var GameScore = mongoose.model("GameScore",ObjectSchema);
+	GameScore.find().remove(function(){
+		callback({message:"GameScore Data cleared"});
+	})
+}
+
+
 
 module.exports = CloudFunctionsController;
 

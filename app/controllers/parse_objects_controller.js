@@ -35,7 +35,7 @@ ParseObjectsController.index = function(){
     var className = self.param('className');
     var objectModel = mongoose.model(className,ObjectSchema)
     var objectParams = self.req.body;
-    
+
     queryBuilder.find(objectModel,objectParams,function(err,result)
     {
         self.res.json(result);

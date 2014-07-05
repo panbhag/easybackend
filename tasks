@@ -1,4 +1,12 @@
 
+remove unwanted files
+Parse.initialize in test.js, put in proper place
+
+
+
+later
+dont use cloud functions to create/clear test data
+
 problem
     callback problem?
 
@@ -94,4 +102,3 @@ object child fetching: include
     multilevel
 
 
-http://www.developereconomics.com/parse-leads-with-28-but-competition-for-second-spot-is-heating-up-as-baas-rises-in-popularity/
