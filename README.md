@@ -3,7 +3,7 @@
 
 #####Current Status
 
-Under development
+All featues are not completed yet. Below is the list of all features with the once which are pending in bold
 
 
 #####Features
@@ -117,6 +117,21 @@ The Parse.serverURL points to the URL on which easybackend server is running.
 #####Run Tests
 
 go to http://localhost:3000/tests/index.html
+
+#####How About the Android and the IOS client
+At this point they donot exist. Not sure if the existing once offered by parse.com can be reused. Some legal experts can help out in understanding that. Or If you are an Android/IOS developer you can contribute for the same.
+
+#####How Can you contribute
+* You can help in the development of the server, if you know Node.js
+* You can use this and raise the issues you face.
+* You can build the Android and IOS and other clients.
+* If you understand licences and legal issues well, you can explain if the existing clients of Andoroid, ios etc can be reused.
+
+Please contact me on pankajbhageria at gmail dot com to reach me
+
+
+
+
 
 
 
