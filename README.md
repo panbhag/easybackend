@@ -73,7 +73,7 @@ Once in Bold are pending
 * **Analytics**
 * **Push Notifications**
 * **Installations**
-* Cloud Code
+* **Cloud Code**(you can write your cloud functions and call them now, but you would have to do the same using mongoose rather than Parse interface)
 * **Geo Points**
 
 
